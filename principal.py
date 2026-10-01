@@ -1,24 +1,19 @@
-class Produto:
-    def __init__(self, descricao, preco_unitario, estoque):
-        self._descricao = descricao
-        self._preco_unitario = preco_unitario
-        self._estoque = estoque
+from produto import Produto
+from venda import Venda
 
-    @property
-    def descricao(self):
-        return self._descricao
+camiseta = Produto("Camiseta", 50.0, 10)
+bone = Produto("Boné", 30.0, 5)
 
-    @property
-    def preco_unitario(self):
-        return self._preco_unitario
+venda = Venda()
 
-    @property
-    def estoque(self):
-        return self._estoque
+print(venda.adicionar_item(camiseta, 2))  
+print(venda.adicionar_item(bone, 1))      
+print(venda.adicionar_item(bone, 10))   
 
-    def decrementar_estoque(self, quantidade):
-        if quantidade <= self._estoque:
-            self._estoque -= quantidade
-            return True
-        return False
+print("Total:", venda.valor_total)       
+print("Estoque camiseta:", camiseta.estoque)  
+print("Estoque boné:", bone.estoque)         
 
+venda.remover_item(camiseta)
+print("Total depois de remover:", venda.valor_total)  
+print("Estoque camiseta:", camiseta.estoque)          
